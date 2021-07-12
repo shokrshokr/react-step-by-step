@@ -1,9 +1,10 @@
 import React from 'react';
 
-function Welcome() {
+function Welcome(props) {
   return (
     <div>
-      welcome from function component.
+      welcome /\{props.name +' '+ props.lastName}/\ from function component.
+      <p>{props.children}</p>
     </div>
   )
 }
