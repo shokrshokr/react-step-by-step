@@ -1,32 +1,78 @@
 import React, { Component } from 'react';
 import './App.css';
-import AgeComponent from './components/Age';
-import UsersList from './components/UsersList';
+
+import Task from './components/Task';
+import CreateTask from './components/CreateTask';
+
+
 
 class App extends Component{
+  state = {
+    newTask : "",
+    todos: [
+      {text: 'learn ReactJs'},
+      {text: 'learn AngularJs'},
+      {text: 'learn NodeJs'},
+      {text: 'learn VueJs'},
+    ]
+  }
+  completeTask = (index) => {
+    //console.log(index);
+    const todos = [...this.state.todos];
+    todos.splice(index, 1);
+    this.setState({
+      todos
+    });
+  }
+
+  updateNewTask = (event) => {
+    this.setState({
+      newTask: event.target.value
+    });
+  }
+
+  addTask = () => {
+    const todos = [...this.state.todos];
+    todos.push({
+      text: this.state.newTask
+    });
+    this.setState({
+      todos,
+      newTask: ''
+    });
+  }
 
 
   render(){
-    const age= 10;
-    /* loop - list */
-      let users = [
-        {id: 1, name: "hussein", age: 23},
-        {id: 2, name: "Mohamad", age: 25},
-        {id: 3, name: "Ali", age: 27},
-      ]
-
-      let guests = [
-        {id: 1, name: "huss", age: 2},
-        {id: 2, name: "Moha", age: 5},
-      ]
-    /* End // loop - list */
     return(
       <div className="App">
-        <AgeComponent age={age} />
-        <AgeComponent age={3} />
+        {/** Method one */}
+          {/*this.state.todos.map((todo, index) => 
+            <Task 
+              todo={todo} 
+              completeTask={this.completeTask} 
+              index={index} 
+              key={index} 
+            /> )
+          */}
+        {/** End // Method one */}
+        {/** Method two */}
+          {this.state.todos.map((todo, index) => 
+            <Task 
+              todo={todo} 
+              completeTask={() => 
+                this.completeTask(index)
+              } 
+              key={index} 
+            /> 
+          )}
+        {/** End // Method two */}
 
-        <UsersList users={users} />
-        <UsersList users={guests} />
+        <CreateTask 
+          value={this.state.newTask} 
+          onChange={this.updateNewTask} 
+          addTask={this.addTask} 
+        />
         
       </div>
     );
