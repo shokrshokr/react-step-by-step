@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
-import Hello from './components/Hello';
-import Lists from './components/Lists';
-import Conditions from './components/Conditions';
-import Welcome from './components/Welcome';
-import LifeCycleEx from './components/LifeCycleEx';
+
 class App extends Component{
+
+
   render(){
+
+    const age= 10;
+
+    let ageTemplate = '';
+    if(age>5){
+      ageTemplate = <h1>you are older than 5</h1>;
+    } else{
+      ageTemplate = <p>you are not older than 5</p>;
+    }
+
     return(
       <div className="App">
-        Welcome from App.
-        <hr/>
-        <h3>component</h3>
-        <Welcome name="hussein" lastName="shokr">Description</Welcome>
-        <hr/>
-        <h3>props-state-eventOnClick-onChangeEvent</h3>
-        <Hello name="hussein"/>
-        <hr/>
-        <h3>list-loop</h3>
-        <Lists/>
-        <hr/>
-        <h3>conditions</h3>
-        <Conditions />
-        <hr/>
-        <h3>LifeCycle-Hooks</h3>
-        <LifeCycleEx />
-        <hr/>
-        <h3></h3>
+        {/** method one */}
+          {/*age > 5 ? 'you are older than 5':
+            age < 0 ? '' : 
+              age > 10 ? '' : ''*/}
+        {/** End // method one */}
+        {/** method tow */}
+          {ageTemplate}
+        {/** End // method tow */}
       </div>
     );
   }
