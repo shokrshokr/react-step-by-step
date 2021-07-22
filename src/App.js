@@ -23,6 +23,8 @@ class App extends Component{
         
 
         <input value={this.state.value} onChange={this.setValue} />
+        <hr />
+        <textarea value={this.state.value} onChange={this.setValue} />
       </div>
     );
   }
