@@ -1,56 +1,37 @@
 import React, { Component } from 'react';
-import './App.css';
+import {Formik, Field} from 'formik';
 
 
+class App extends Component {
 
-
-class App extends Component{
-  
-  state = {
-    value: 'Default',
-    selectVal: "2",
-    checked: true,
-    radioValue: "2"
+  onSubmit = (values) => {
+    console.log(values);
   }
-  
-  setValue = (event) => {
-    const name = event.target.name;
-    const type = event.target.type;
-    let value = '';
 
-    if(type == 'checkbox')  value = event.target.checked;
-    else  value = event.target.value;
-
-    this.setState({
-      [name]: value
-    })
+  form = (props) => {
+    return (
+      <form onSubmit={props.handleSubmit}>
+        <label>Name</label><br />
+        <Field name="name" /><br />
+        <label>Email</label><br />
+        <Field name="email" /><br />
+        <button type="submit">Send</button>
+      </form>
+    )
   }
 
   render(){
-    return(
+    return (
       <div className="App">
-        <input name="value" value={this.state.value} onChange={this.setValue} />
-        <hr />
-        <textarea name="value" value={this.state.value} onChange={this.setValue} />
-        <hr />
-        <select name="selectVal" value={this.state.selectVal} onChange={this.setValue} >
-          <option value="1">One</option>
-          <option value="2">Two</option>
-        </select>
-        <hr />
-        <label>
-          Change checkbox : .
-          <input name="checked" type="checkbox" checked={this.state.checked} onChange={this.setValue} />
-        </label>
-        <hr />
-        
-        <div onChange={this.setValue} >
-          <input name="radioValue" type="radio" value="1" checked={this.state.radioValue == '1'} />One
-          <input name="radioValue" type="radio" value="2" checked={this.state.radioValue == '2'} />Two
-        </div>
+        <Formik 
+          initialValues={{name: "hussein", email: ""}}
+          onSubmit={this.onSubmit}
+          render={this.form}
+        />
       </div>
     );
   }
+  
 }
 
 export default App;
