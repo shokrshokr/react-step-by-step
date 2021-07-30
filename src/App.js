@@ -47,6 +47,7 @@ class App extends Component {
           name="friends"
           render={ arrayHelper => (
             <div>
+              <h3>Friends</h3>
               {props.values.friends.map((item, index) => (
                 <div key={index}>
                   <Field name={`friends.${index}`} />
@@ -70,7 +71,41 @@ class App extends Component {
 
             </div>
           )}
-        />
+        /><br />
+
+        <FieldArray
+          name="phoneNumbers"
+          render={ arrayHelper => (
+            <div>
+              <h3>Phone Numbers</h3>
+              {props.values.phoneNumbers.map((item, index) => (
+                <div key={index}>
+                  <Field name={`phoneNumbers.${index}.number`} placeholder="number" />
+                  <ErrorMessage name={`phoneNumbers.${index}.number`} /><br />
+                  
+                  <Field name={`phoneNumbers.${index}.extension`} placeholder="extension" />
+                  <ErrorMessage name={`phoneNumbers.${index}.extension`} /><br />
+                  
+                  <button 
+                    type="button" 
+                    onClick={() => arrayHelper.remove(index)}
+                  > 
+                    - 
+                  </button>
+
+                </div>
+              ))}
+
+              <button 
+                type="button" 
+                onClick={() => arrayHelper.push({number: '', extension: ''})}
+              > 
+                + 
+              </button>
+
+            </div>
+          )}
+        /><br />
 
         <button type="submit">Send</button>
       </form>
@@ -89,6 +124,12 @@ class App extends Component {
       }),
       friends: Yup.array().of(
         Yup.string().required('Required'),
+      ),
+      phoneNumbers: Yup.array().of(
+        Yup.object().shape({
+          number: Yup.number().typeError('accept numbers only').required('number is a required field'),
+          extension: Yup.number().typeError('accept numbers only').required('extension is a required field'),
+        }),
       )
     })
     return(
@@ -111,7 +152,17 @@ class App extends Component {
               facebook: "",
               twitter: "",
             },
-            friends: ["huss", "sho"]
+            friends: ["huss", "sho"],
+            phoneNumbers: [
+              {
+                number: "71586780",
+                extension: "00961"
+              },
+              {
+                number: "07451429",
+                extension: "961"
+              }
+            ]
           }}
           onSubmit={this.onSubmit}
           render={this.form}
