@@ -3,33 +3,40 @@ import React, { Component } from 'react';
 
 class App extends Component {
 
-  state = {
-    active: true
-  }
+  
   render() {
-    const Style = {color: 'white', 'font-weight': 'bold' };
+    //using string variable
+    let classes = '';
+    if(true)
+      classes += 'green ';
+    if(true)
+      classes += 'whiteText ';
+    if(true)
+      classes +='boldText ';
 
-    if(this.state.active){
-      Style.color = 'blue';
-    }
+    //using array variable
+    let classess = [];
+      if(true)
+        classess.push('green');
+      if(true)
+        classess.push('whiteText');
+      if(true)
+        classess.push('boldText');
+
     return (
       <div>
-        <p>men 5elel state</p>
-        <div className={this.state.active ? 'green':'red'} style={Style}>
-          Test Three
+        <div className={classes}>
+          Test
         </div>
 
-        <button onClick={()=> {
-          this.setState({active: ! this.state.active})
-        }}>
-          Change active
-        </button>
+        <br/><br/>
+
+        <div className={classess.join(' ')}>
+          Test
+        </div>
+
         
-
-        <br /><br />
-        <div className='green' style={{color: 'white', fontWeight: 'bold' }}> {/* or 'font-weight': 'bold' */}
-          Test 4
-        </div>
+        
       </div>
     );
   }
