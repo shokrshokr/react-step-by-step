@@ -1,37 +1,19 @@
 import './App.css';
 import React, { Component } from 'react';
+import classnames from 'classnames';
 
 class App extends Component {
 
   
   render() {
-    //using string variable
-    let classes = '';
-    if(true)
-      classes += 'green ';
-    if(true)
-      classes += 'whiteText ';
-    if(true)
-      classes +='boldText ';
-
-    //using array variable
-    let classess = [];
-      if(true)
-        classess.push('green');
-      if(true)
-        classess.push('whiteText');
-      if(true)
-        classess.push('boldText');
+    
+    let classes = classnames('test',{green: 1 > 0, whiteText: 2 < 4, boldText: 8 == 8});
+      
 
     return (
       <div>
+        
         <div className={classes}>
-          Test
-        </div>
-
-        <br/><br/>
-
-        <div className={classess.join(' ')}>
           Test
         </div>
 
