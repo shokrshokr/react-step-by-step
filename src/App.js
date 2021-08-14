@@ -1,24 +1,38 @@
 import './App.css';
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import axios from 'axios';
 
+async function getUsers(){
+  try{
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+    console.log(response);
+    return response;
+  }catch(error){
+    console.error(error);
+  }
+}
 class App extends Component {
 
+  state = {
+    users: []
+  }
+
+  componentDidMount = () => {
+    getUsers().then(response =>{
+      this.setState({
+        users:response.data
+      });
+    });
+  }
   
   render() {
-    
-    let classes = classnames('test',{green: 1 > 0, whiteText: 2 < 4, boldText: 8 == 8});
-      
-
     return (
       <div>
-        
-        <div className={classes}>
-          Test
-        </div>
-
-        
-        
+        <ul>
+          {this.state.users.map(user =>
+            <li>{user.name}</li>
+          )}
+        </ul>
       </div>
     );
   }
