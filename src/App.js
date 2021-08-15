@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Link} from "react-router-dom";
+import EditUserPage from './Pages/EditUserPage';
 import UserPage from './Pages/UserPage';
 import UsersPage from './Pages/UsersPage';
 
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/users" exact component={UsersPage} />
           <Route path="/users/:id" exact component={UserPage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/users/edit/:id" exact component={EditUserPage} />
         
         </div>
       </BrowserRouter>

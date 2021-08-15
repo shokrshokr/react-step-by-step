@@ -30,6 +30,7 @@ export default class UsersPage extends Component{
                         <li key={user.id}>
                             {user.name}
                             <Link to={"/users/" + user.id}>View</Link>
+                            <Link to={"/users/edit/" + user.id}>Edit</Link>
                         </li>
                     )}
                 </ul>
