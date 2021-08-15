@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import ViewUser from './components/ViewUser';
-import { getUsers, deleteUser } from './Api/Users';
+import { getUsers, deleteUser, updateUser } from './Api/Users';
 import UsersForm  from './components/UsersForm'
 
 class App extends Component {
@@ -40,6 +40,14 @@ class App extends Component {
         alert('حدث خطأ غير معروف');
       })
   }
+
+  updateUser = (values) => {
+    const id = this.state.user.id
+    updateUser(id, values)
+      .then(()=>{
+        alert('Success')
+      })
+  }
   
   render() {
     return (
@@ -68,7 +76,7 @@ class App extends Component {
           {this.state.user.id > 0 ? 
             <UsersForm 
               values={this.state.user} 
-              onSubmit={(values => console.log(values))}  
+              onSubmit={this.updateUser}  
             />
             :
             'please select a user'
