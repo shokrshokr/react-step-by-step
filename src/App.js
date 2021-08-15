@@ -5,6 +5,7 @@ import EditUserPage from './Pages/EditUserPage';
 import UserPage from './Pages/UserPage';
 import UsersPage from './Pages/UsersPage';
 import "./App.css";
+import NotFound from './Pages/NotFound';
 
 const HomePage = () => <div>Home</div>
 const AboutPage = () => <div>About</div>
@@ -28,6 +29,7 @@ class App extends Component {
             <Route path="/users/create" exact component={CreateUserPage} />
             <Route path="/users/:id" exact component={UserPage} />
             <Route path="/users/edit/:id" exact component={EditUserPage} />
+            <Route component={NotFound} />
 
           </Switch>
           
