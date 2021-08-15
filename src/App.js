@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import ViewUser from './components/ViewUser';
-import { getUsers, deleteUser, updateUser } from './Api/Users';
+import { getUsers, deleteUser, updateUser, addUser } from './Api/Users';
 import UsersForm  from './components/UsersForm'
 
 class App extends Component {
@@ -48,6 +48,16 @@ class App extends Component {
         alert('Success')
       })
   }
+
+  addUser = (values)=> {
+    addUser(values)
+      .then(()=>{
+        alert('Success')
+      })
+      .catch(error =>{
+        alert('حدث خطأ غير معروف');
+      })
+  }
   
   render() {
     return (
@@ -81,6 +91,17 @@ class App extends Component {
             :
             'please select a user'
           }
+        </div>
+
+        <div>
+          <h3>Add new User</h3>
+          <UsersForm 
+            values={{
+              name: '',
+              email: ''
+            }} 
+            onSubmit={this.addUser}  
+          />
         </div>
       </div>
     );

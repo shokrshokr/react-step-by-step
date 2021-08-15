@@ -15,3 +15,8 @@ import axios from 'axios';
     const response = await axios.put('https://jsonplaceholder.typicode.com/users/'+ id, values);
     return response;
   }
+
+  export async function addUser(values){
+    const response = await axios.post('https://jsonplaceholder.typicode.com/users/');
+    return response;
+  }
