@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-
-export default function(props){
+const ViewUser = function(props){
     return(
         <div>
+            Id: {props.match.params.id}
             <div>
                 Name: {props.user.name}
             </div>
@@ -13,3 +14,5 @@ export default function(props){
         </div>
     );
 }
+
+export default withRouter(ViewUser);
