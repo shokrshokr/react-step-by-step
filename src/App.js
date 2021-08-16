@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Cart from './pages/Cart';
 import Products from './pages/Products';
+import Product from './pages/Product';
 
 class App extends Component{
   
@@ -37,7 +38,8 @@ class App extends Component{
 
           <Route path="/" exact component={Home} />
           <Route path="/cart" component={Cart} />
-          <Route path="/products" component={Products} />
+          <Route path="/products" component={Products} exact />
+          <Route path="/products/:id" component={Product} />
 
 
 
