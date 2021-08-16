@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Cart from './pages/Cart';
 import Products from './pages/Products';
 import Product from './pages/Product';
+import CartIcon from './Components/CartIcon';
 
 class App extends Component{
   
@@ -33,6 +34,9 @@ class App extends Component{
                 </li>
               </ul>
             </div>
+
+          <CartIcon />
+
           </nav>
 
 
