@@ -5,6 +5,7 @@ class Product extends React.Component{
 
     state={
         loading: true,
+        quantity: 0,
         product: {}
     };
 
@@ -23,11 +24,23 @@ class Product extends React.Component{
             })
     }
 
+    handleQuantity = (event) => {
+        const value = event.target.value;
+
+        if(value < 0)
+            return ;
+
+        this.setState({
+            quantity: value
+        })
+    }
+
     render(){
         if(this.state.loading)
             return 'Loading ..';
 
         const product = this.state.product;
+        const quantity = this.state.quantity;
 
         return (
             <div>
@@ -45,12 +58,15 @@ class Product extends React.Component{
 
                         <input 
                             type="number" 
+                            value={quantity}
                             onChange={
                                 this.handleQuantity
                             } 
                         />
                         
                         <br /><br />
+
+                        <p>Total: {quantity * product.price}</p>
 
                         <button 
                             className="btn btn-primary" 
