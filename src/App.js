@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './pages/Home';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+
+//Components
+import CartIcon from './Components/CartIcon';
+
+//store
+import { Provider } from 'react-redux';
+import store from './store/store'
+
+//Pages
+import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Products from './pages/Products';
 import Product from './pages/Product';
-import CartIcon from './Components/CartIcon';
 
 class App extends Component{
   
@@ -55,4 +63,10 @@ class App extends Component{
   }
 }
 
-export default App;
+function AppWithStore(){
+  return <Provider store={store}>
+    <App />
+  </Provider>
+}
+
+export default AppWithStore;
