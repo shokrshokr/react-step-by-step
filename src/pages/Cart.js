@@ -3,24 +3,19 @@ import CartItem from "../Components/CartItem";
 import ProductsApi from "../api/products";
 import {connect} from "react-redux";
 
+
 class Cart extends React.Component{
 
-    placeOrder = () => {
-        // send the request to the server
-        // clear cart
-        this.props.clearCart();
-        alert('We recieved your order, and we are working on it.');
-    };
-
+    
     render(){
         return (
             <div>
                 <h1>Cart</h1>
 
                 <div className="row">
-                    {this.props.cartItems.map(item => 
-                        <div className={'col-3'} key={item.product.id}>
-                            <CartItem item={item} />
+                    {this.props.cartItems.map((item, index) => 
+                        <div className={'col-3'} key={index}>
+                            <CartItem item={item} index={index} />
                         </div>
                     )}
                 </div>
@@ -30,7 +25,7 @@ class Cart extends React.Component{
                     Total: {this.props.total}
                 </h3>
 
-                <button className="btn btn-primary btn-block" onClick={this.placeOrder}>Place order</button>
+                <button className="btn btn-primary btn-block">Pay</button>
             </div>
         );
     }
@@ -45,4 +40,6 @@ const mapStateToProps = (state) => {
 }
 
 
+
 export default connect(mapStateToProps)(Cart);
+
