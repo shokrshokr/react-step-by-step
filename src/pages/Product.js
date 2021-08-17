@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import {getById} from "../api/products";
+import { addToCart } from "../store/actions/actions";
+
 
 class Product extends React.Component{
 
@@ -33,6 +36,10 @@ class Product extends React.Component{
         this.setState({
             quantity: value
         })
+    }
+
+    addToCart = (product) => {
+        this.props.addToCart(product, this.state.quantity);
     }
 
     render(){
@@ -84,4 +91,13 @@ class Product extends React.Component{
     }
 }
 
-export default Product
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (productsInfo, quantity) => dispatch(addToCart(productsInfo, quantity)),
+    };
+}
+
+
+export default connect(null, mapDispatchToProps)(Product);
